@@ -1,0 +1,302 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://webservice/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="ProvaWSService" targetNamespace="http://webservice/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://webservice/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://webservice/">
+  <xs:element name="inserisciContoCorrente" type="tns:inserisciContoCorrente"/>
+  <xs:element name="inserisciContoCorrenteResponse" type="tns:inserisciContoCorrenteResponse"/>
+  <xs:element name="inserisciMovimento" type="tns:inserisciMovimento"/>
+  <xs:element name="inserisciMovimentoResponse" type="tns:inserisciMovimentoResponse"/>
+  <xs:element name="inserisciTipoMovimenti" type="tns:inserisciTipoMovimenti"/>
+  <xs:element name="inserisciTipoMovimentiResponse" type="tns:inserisciTipoMovimentiResponse"/>
+  <xs:element name="ottieniContiCorrenti" type="tns:ottieniContiCorrenti"/>
+  <xs:element name="ottieniContiCorrentiResponse" type="tns:ottieniContiCorrentiResponse"/>
+  <xs:element name="ottieniMovimento" type="tns:ottieniMovimento"/>
+  <xs:element name="ottieniMovimentoResponse" type="tns:ottieniMovimentoResponse"/>
+  <xs:complexType name="ottieniMovimento">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="ottieniMovimentoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:responseMovimento"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="responseMovimento">
+    <xs:complexContent>
+      <xs:extension base="tns:responseBase">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="arrayListMovimento" nillable="true" type="tns:movimento"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="responseBase">
+    <xs:sequence>
+      <xs:element name="errorCode" type="xs:int"/>
+      <xs:element minOccurs="0" name="errorDesc" type="xs:string"/>
+      <xs:element minOccurs="0" name="result" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="movimento">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="causale" type="xs:string"/>
+      <xs:element minOccurs="0" name="data" type="xs:anySimpleType"/>
+      <xs:element name="idConto" type="xs:int"/>
+      <xs:element name="idMovimento" type="xs:int"/>
+      <xs:element name="idTipoMovimento" type="xs:int"/>
+      <xs:element name="importo" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="inserisciTipoMovimenti">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:requestTipoMovimenti"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="requestTipoMovimenti">
+    <xs:complexContent>
+      <xs:extension base="tns:requestBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="descrizione" type="xs:string"/>
+          <xs:element name="idTipoMovimento" type="xs:int"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="requestBase">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="inserisciTipoMovimentiResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ottieniContiCorrenti">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="ottieniContiCorrentiResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:responseConto"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="responseConto">
+    <xs:complexContent>
+      <xs:extension base="tns:responseBase">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="arrayListCC" nillable="true" type="tns:contoCorrente"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="contoCorrente">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codicefiscale" type="xs:string"/>
+      <xs:element minOccurs="0" name="dataInizio" type="tns:date"/>
+      <xs:element name="idConto" type="xs:int"/>
+      <xs:element name="saldo" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="date">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="inserisciContoCorrente">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:requestContoCorrente"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="requestContoCorrente">
+    <xs:complexContent>
+      <xs:extension base="tns:requestBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="codicefiscale" type="xs:string"/>
+          <xs:element minOccurs="0" name="dataInizio" type="xs:anySimpleType"/>
+          <xs:element name="idConto" type="xs:int"/>
+          <xs:element name="saldo" type="xs:double"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="inserisciContoCorrenteResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="inserisciMovimento">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:requestMovimento"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="requestMovimento">
+    <xs:complexContent>
+      <xs:extension base="tns:requestBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="causale" type="xs:string"/>
+          <xs:element minOccurs="0" name="data" type="xs:anySimpleType"/>
+          <xs:element name="idConto" type="xs:int"/>
+          <xs:element name="idMovimento" type="xs:int"/>
+          <xs:element name="idTipoMovimento" type="xs:int"/>
+          <xs:element name="importo" type="xs:double"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="inserisciMovimentoResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Exception" type="tns:Exception"/>
+  <xs:complexType name="Exception">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="ottieniMovimento">
+    <wsdl:part element="tns:ottieniMovimento" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="inserisciTipoMovimentiResponse">
+    <wsdl:part element="tns:inserisciTipoMovimentiResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ottieniMovimentoResponse">
+    <wsdl:part element="tns:ottieniMovimentoResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="inserisciMovimentoResponse">
+    <wsdl:part element="tns:inserisciMovimentoResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="inserisciTipoMovimenti">
+    <wsdl:part element="tns:inserisciTipoMovimenti" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ottieniContiCorrenti">
+    <wsdl:part element="tns:ottieniContiCorrenti" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="Exception">
+    <wsdl:part element="tns:Exception" name="Exception">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="inserisciContoCorrenteResponse">
+    <wsdl:part element="tns:inserisciContoCorrenteResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ottieniContiCorrentiResponse">
+    <wsdl:part element="tns:ottieniContiCorrentiResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="inserisciContoCorrente">
+    <wsdl:part element="tns:inserisciContoCorrente" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="inserisciMovimento">
+    <wsdl:part element="tns:inserisciMovimento" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ProvaWS">
+    <wsdl:operation name="ottieniMovimento">
+      <wsdl:input message="tns:ottieniMovimento" name="ottieniMovimento">
+    </wsdl:input>
+      <wsdl:output message="tns:ottieniMovimentoResponse" name="ottieniMovimentoResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="inserisciTipoMovimenti">
+      <wsdl:input message="tns:inserisciTipoMovimenti" name="inserisciTipoMovimenti">
+    </wsdl:input>
+      <wsdl:output message="tns:inserisciTipoMovimentiResponse" name="inserisciTipoMovimentiResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ottieniContiCorrenti">
+      <wsdl:input message="tns:ottieniContiCorrenti" name="ottieniContiCorrenti">
+    </wsdl:input>
+      <wsdl:output message="tns:ottieniContiCorrentiResponse" name="ottieniContiCorrentiResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="inserisciContoCorrente">
+      <wsdl:input message="tns:inserisciContoCorrente" name="inserisciContoCorrente">
+    </wsdl:input>
+      <wsdl:output message="tns:inserisciContoCorrenteResponse" name="inserisciContoCorrenteResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="inserisciMovimento">
+      <wsdl:input message="tns:inserisciMovimento" name="inserisciMovimento">
+    </wsdl:input>
+      <wsdl:output message="tns:inserisciMovimentoResponse" name="inserisciMovimentoResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProvaWSServiceSoapBinding" type="tns:ProvaWS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="ottieniMovimento">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="ottieniMovimento">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ottieniMovimentoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="inserisciTipoMovimenti">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="inserisciTipoMovimenti">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="inserisciTipoMovimentiResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ottieniContiCorrenti">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="ottieniContiCorrenti">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ottieniContiCorrentiResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="inserisciContoCorrente">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="inserisciContoCorrente">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="inserisciContoCorrenteResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="inserisciMovimento">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="inserisciMovimento">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="inserisciMovimentoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProvaWSService">
+    <wsdl:port binding="tns:ProvaWSServiceSoapBinding" name="ProvaWSPort">
+      <soap:address location="http://localhost:8080/Contocorrente/ProvaWS"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

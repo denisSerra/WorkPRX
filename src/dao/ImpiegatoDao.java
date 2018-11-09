@@ -2,6 +2,8 @@ package dao;
 
 import java.util.ArrayList;
 
+import function.Delete;
+import function.Read;
 import model.Impiegato;
 
 public class ImpiegatoDao {	
@@ -35,5 +37,13 @@ public class ImpiegatoDao {
 	}
 	public static ArrayList<Impiegato> ottieniImpiegati(){
 		return Read.ottieniImpiegati();
+	}
+	
+	public static Impiegato cercaImpiegatiCodFisc(String codFisc){
+		return Read.ottieniImpiegatiPerCF(codFisc);
+	}
+	
+	public static boolean cancellaImpiegatoCodFisc(String codFisc) {
+		return Delete.deleteImpiegatoPerCodFisc(codFisc);
 	}
 }

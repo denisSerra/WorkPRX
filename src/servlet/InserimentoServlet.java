@@ -1,3 +1,4 @@
+package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -10,8 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.ImpiegatoDao;
-import dao.Insert;
-import dao.Read;
+import function.Read;
 import function.Function;
 import function.FunctionInsert;
 import model.Impiegato;
@@ -21,28 +21,38 @@ import model.Storico;
 /**
  * Servlet implementation class Prova
  */
-@WebServlet("/Prova")
+@WebServlet("/InserimentoServlet")
 public class InserimentoServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	@SuppressWarnings("unused")
-	   
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/InserisciImp.jsp");
+		dispatcher.forward(request, response);
+	}
+	
 	   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, 
 	   IOException {
 			String nome = request.getParameter("nome");
 			String cognome = request.getParameter("cognome");
-			String codiceFiscale = request.getParameter("codiceFiscale");		
+			String codiceFiscale = request.getParameter("codiceFiscale");	
+			boolean inserito=false;
 				if( nome!=null&& cognome!=null&&codiceFiscale!=null) {
 					try {
-						FunctionInsert.insertImpiegato(nome, cognome, codiceFiscale);
+						inserito=FunctionInsert.insertImpiegato(nome, cognome, codiceFiscale);
 					} catch (NumberFormatException e) {
 						e.printStackTrace();
 					} catch (SQLException e) {
 						e.printStackTrace();
 					}
-				RequestDispatcher req = request.getRequestDispatcher("index.jsp");
-				req.include(request, response);
+					if(inserito) {
+						RequestDispatcher req = request.getRequestDispatcher("/WEB-INF/Inserimento.jsp");
+						req.forward(request, response);
+					}
+					else {
+				RequestDispatcher req = request.getRequestDispatcher("/WEB-INF/InserisciImp.jsp");
+				req.forward(request, response);
 				}
+			}
 	   }
 	   
 	   public void destroy() {

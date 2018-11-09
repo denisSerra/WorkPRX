@@ -4,6 +4,14 @@ public class Storico {
 	private int id_ruolo;
 	private String data_inizio;
 	private String data_fine;
+	public String getCodiceFiscale() {
+		return codiceFiscale;
+	}
+	public void setCodiceFiscale(String codiceFiscale) {
+		this.codiceFiscale = codiceFiscale;
+	}
+
+	private String codiceFiscale;
 	public int getId_ruolo() {
 		return id_ruolo;
 	}

@@ -2,6 +2,8 @@ package dao;
 
 import java.util.ArrayList;
 
+import function.Read;
+import model.Impiegato;
 import model.Ruolo;
 
 public class RuoloDao {
@@ -36,5 +38,9 @@ public class RuoloDao {
 	
 	public static ArrayList<Ruolo> ottieniRuolo(){
 		return Read.ottieniRuolo();
+	}
+	
+	public static Ruolo cercaRuoloStipendio(int stipendio){
+		return Read.ottieniRuoloPerStipendio(stipendio);
 	}
 }

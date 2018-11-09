@@ -1,25 +1,27 @@
-package dao;
+package function;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class Insert {
-	public static void insertImpiegato(int idimpiegato,String nome,String cognome,String codFisc) throws SQLException {
+import dao.ConnessioneJDBC;
+
+public class Update {
+	public static void updateImpiegato(int idimpiegato,String nome,String cognome,String codFisc) throws SQLException {
 		Connection con = ConnessioneJDBC.connessione();
 		java.sql.PreparedStatement preparedStatement = null;
 
-		String insertTableSQL = "INSERT INTO impiegato SET idimpiegato =?,Nome = ?,Cognome =?,CodiceFiscale = ?" ;
+		String updateTableSQL = "UPDATE impiegato SET Nome = ?,Cognome = ?,CodiceFiscale = ?" + " WHERE idimpiegato = ?";
 
 		try {
-			preparedStatement = con.prepareStatement(insertTableSQL);
+			preparedStatement = con.prepareStatement(updateTableSQL);
 
-			preparedStatement.setInt(1, idimpiegato);
-			preparedStatement.setString(2,nome );
-			preparedStatement.setString(3,cognome );
-			preparedStatement.setString(4, codFisc);
+			preparedStatement.setString(1, nome);
+			preparedStatement.setString(2, cognome);
+			preparedStatement.setString(3, codFisc);
+			preparedStatement.setInt(4, idimpiegato);
 			// execute update SQL stetement
 			preparedStatement.executeUpdate();
-			System.out.println("INSERT INTO TABLE IMPIEGATI");
+			System.out.println("UPDATE TABLE IMPIEGATI");
 			System.out.println("Record is updated to DBUSER table!");
 
 		} catch (Exception e) {
@@ -37,20 +39,20 @@ public class Insert {
 		}
 	}
 	
-	public static void insertRuolo(int idruolo,int stipendio) throws SQLException {
+	public static void updateRuolo(int idruolo,int stipendio) throws SQLException {
 		Connection con = ConnessioneJDBC.connessione();
 		java.sql.PreparedStatement preparedStatement = null;
 
-		String insertTableSQL = "INSERT INTO ruolo SET idruolo =?,stipendio = ?" ;
+		String updateTableSQL = "UPDATE ruolo SET stipendio = ?" + " WHERE idruolo = ?";
 
 		try {
-			preparedStatement = con.prepareStatement(insertTableSQL);
+			preparedStatement = con.prepareStatement(updateTableSQL);
 
-			preparedStatement.setInt(1, idruolo);
-			preparedStatement.setInt(2,stipendio);
+			preparedStatement.setInt(1, stipendio);
+			preparedStatement.setInt(2, idruolo);
 			// execute update SQL stetement
 			preparedStatement.executeUpdate();
-			System.out.println("INSERT INTO TABLE RUOLO");
+			System.out.println("UPDATE TABLE RUOLO");
 			System.out.println("Record is updated to DBUSER table!");
 
 		} catch (Exception e) {
@@ -68,21 +70,21 @@ public class Insert {
 		}
 	}
 	
-	public static void insertStorico(int idruolo,String dataInizio,String dataFine) throws SQLException {
+	public static void updateStorico(int idruolo,String dataInizio,String dataFine) throws SQLException {
 		Connection con = ConnessioneJDBC.connessione();
 		java.sql.PreparedStatement preparedStatement = null;
 
-		String insertTableSQL = "INSERT INTO storico SET idruolo =?,dataInizio = ?,dataFine =?" ;
+		String updateTableSQL = "UPDATE storico SET DataInizio = ?,DataFine = ?" + " WHERE idruolo = ?";
 
 		try {
-			preparedStatement = con.prepareStatement(insertTableSQL);
+			preparedStatement = con.prepareStatement(updateTableSQL);
 
-			preparedStatement.setInt(1, idruolo);
-			preparedStatement.setString(2,dataInizio);
-			preparedStatement.setString(3,dataFine);
+			preparedStatement.setString(1, dataInizio);
+			preparedStatement.setString(2, dataFine);
+			preparedStatement.setInt(3, idruolo);
 			// execute update SQL stetement
 			preparedStatement.executeUpdate();
-			System.out.println("INSERT INTO TABLE STORICO");
+			System.out.println("UPDATE TABLE STORICO");
 			System.out.println("Record is updated to DBUSER table!");
 
 		} catch (Exception e) {

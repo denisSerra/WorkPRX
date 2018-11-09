@@ -2,6 +2,8 @@ package dao;
 
 import java.util.ArrayList;
 
+import function.Read;
+import model.Impiegato;
 import model.Storico;
 
 public class StoricoDao {
@@ -37,5 +39,9 @@ public class StoricoDao {
 	
 	public static ArrayList<Storico> ottieniImpiegati(){
 		return Read.ottieniStorico();
+	}
+	
+	public static Storico cercaStoricoDataInizio(String dataInizio){
+		return Read.ottieniStoricoPerDataInizio(dataInizio);
 	}
 }

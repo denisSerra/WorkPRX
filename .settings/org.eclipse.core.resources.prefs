@@ -1,0 +1,16 @@
+eclipse.preferences.version=1
+encoding//src/webservice/ContoCorrente.java=UTF-8
+encoding//src/webservice/Date.java=UTF-8
+encoding//src/webservice/Exception.java=UTF-8
+encoding//src/webservice/Movimento.java=UTF-8
+encoding//src/webservice/ProvaWS.java=UTF-8
+encoding//src/webservice/ProvaWSService.java=UTF-8
+encoding//src/webservice/ProvaWSServiceLocator.java=UTF-8
+encoding//src/webservice/ProvaWSServiceSoapBindingStub.java=UTF-8
+encoding//src/webservice/RequestBase.java=UTF-8
+encoding//src/webservice/RequestContoCorrente.java=UTF-8
+encoding//src/webservice/RequestMovimento.java=UTF-8
+encoding//src/webservice/RequestTipoMovimenti.java=UTF-8
+encoding//src/webservice/ResponseBase.java=UTF-8
+encoding//src/webservice/ResponseConto.java=UTF-8
+encoding//src/webservice/ResponseMovimento.java=UTF-8

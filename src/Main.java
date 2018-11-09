@@ -2,13 +2,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import dao.ConnessioneJDBC;
-import dao.Delete;
 import dao.ImpiegatoDao;
-import dao.Insert;
-import dao.Read;
 import dao.RuoloDao;
 import dao.StoricoDao;
-import dao.Update;
 import model.Impiegato;
 import model.Ruolo;
 import model.Storico;
@@ -103,6 +99,6 @@ public class Main {
 		
 //		Delete.deleteImpiegato(1);
 //		Delete.deleteRuolo(5000);
-//		Delete.deleteStorico("in attività");
+//		Delete.deleteStorico("in attività");		
 	}
 }
